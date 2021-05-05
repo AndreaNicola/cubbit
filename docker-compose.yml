@@ -4,16 +4,29 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: vault
+      MYSQL_USER: vault
+      MYSQL_PASSWORD: vault
     command: --default-authentication-plugin=mysql_native_password --init-file /data/application/init.sql
     volumes:
           - ./init.sql:/data/application/init.sql
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
   backend:
     build: ./cubbit-be
+    environment:
+      DATABASE_USER: vault
+      DATABASE_PASSWORD: vault
+      DATABASE_HOST: mysql
+      DATABASE_SCHEMA: vault
+      LOGGER: 'false'
     ports:
       - "5000:5000"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     links:
       - mysql
