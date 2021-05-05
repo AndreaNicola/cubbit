@@ -1,0 +1,9 @@
+services:
+  mysql:
+    image: mysql
+  backend:
+    build: ./cubbit-be
+    ports:
+      - "5000:5000"
+    links:
+      - mysql
