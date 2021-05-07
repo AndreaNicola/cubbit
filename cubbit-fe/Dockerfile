@@ -4,4 +4,4 @@ COPY . .
 RUN yarn
 COPY . .
 ENTRYPOINT ["yarn" , "start"]
-EXPOSE 5000
+EXPOSE 3000

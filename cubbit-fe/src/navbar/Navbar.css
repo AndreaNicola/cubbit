@@ -1,0 +1,20 @@
+.navbar {
+    background: #292929;
+}
+
+.btn-group {
+    padding: 2px;
+}
+
+.btn {
+    border-radius: 2px;
+    padding: 10px;
+}
+
+ .btn .btn-primary .active {
+    background: #363636;
+}
+
+.btn .btn-primary {
+    background: #009EFF;
+}
